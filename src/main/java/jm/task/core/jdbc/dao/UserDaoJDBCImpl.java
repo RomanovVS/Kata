@@ -25,13 +25,20 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("INSERT userstable(Name, LastName, Age) VALUES ('" + name + "' , '" + lastName + "', " + age + ")")) {
+        String sql = "INSERT userstable(Name, LastName, Age) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            statement.setString(2, lastName);
+            statement.setInt(3, age);
             statement.executeUpdate();
         }
+
     }
 
     public void removeUserById(long id) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM userstable WHERE Id=" + id + ";")) {
+        String sql = "DELETE FROM userstable WHERE Id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, id);
             statement.executeUpdate();
         }
     }
