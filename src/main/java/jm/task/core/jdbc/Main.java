@@ -6,7 +6,6 @@ import jm.task.core.jdbc.util.Util;
 import java.sql.SQLException;
 
 public class Main {
-    private static SQLException e;
 
     public static void main(String[] args) throws SQLException {
         Util.getConnection();
