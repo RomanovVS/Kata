@@ -32,7 +32,6 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.setInt(3, age);
             statement.executeUpdate();
         }
-
     }
 
     public void removeUserById(long id) throws SQLException {
@@ -48,13 +47,12 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("SELECT * FROM userstable")) {
-            while (rs.next()) {
+             while (rs.next()) {
                 String name = rs.getString(2);
                 String lastName = rs.getString(3);
                 byte age = rs.getByte(4);
                 res.add(new User(name, lastName, age));
-            }
-
+             }
         }
         return res;
     }
