@@ -1,6 +1,5 @@
 package jm.task.core.jdbc.util;
 
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -30,7 +29,7 @@ public class Util {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.HBM2DDL_AUTO, "none");
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);

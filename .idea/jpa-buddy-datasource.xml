@@ -2,7 +2,10 @@
 <project version="4">
   <component name="JpbDataSourceConfig">
     <data-sources>
-      <data-source id="c44a2682-5a47-41b6-a7ec-69275421de44" name="Kata" url="jdbc:mysql://localhost/Kata?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+      <data-source id="e0b7f959-cc4a-462b-ab68-c49e6329995e" name="Kata" url="jdbc:mysql://localhost/testdb?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
     </data-sources>
+    <data-source-infos>
+      <data-source-info id="e0b7f959-cc4a-462b-ab68-c49e6329995e" persistence-unit-name="User" />
+    </data-source-infos>
   </component>
 </project>
