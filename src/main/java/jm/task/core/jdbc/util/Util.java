@@ -59,9 +59,7 @@ public class Util {
         return connection;
     }
 
-    public static void closeConnection() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
-        }
+    public static void closeSessionFactory() {
+        getSessionFactory().close();
     }
 }
