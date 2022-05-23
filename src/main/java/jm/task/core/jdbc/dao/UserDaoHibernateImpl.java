@@ -37,12 +37,12 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
             User user = new User();
             user.setName(name);
             user.setLastName(lastName);
             user.setAge(age);
             session.save(user);
-            Transaction transaction = session.beginTransaction();
             transaction.commit();
         }
     }
@@ -51,9 +51,9 @@ public class UserDaoHibernateImpl implements UserDao {
     public void removeUserById(long id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            User userToDelete = session.get(User.class, id);
+            User userToDelete = session.load(User.class, id);
             if (userToDelete != null) {
-                session.remove(userToDelete);
+                session.delete(userToDelete);
             }
             transaction.commit();
         }
@@ -64,7 +64,7 @@ public class UserDaoHibernateImpl implements UserDao {
         List<User> res;
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            res = session.createNativeQuery("SELECT * FROM userstable", User.class).getResultList();
+            res = session.createQuery("SELECT u FROM User u", User.class).list();
             transaction.commit();
         }
         return res;
@@ -74,7 +74,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void cleanUsersTable() {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.createNativeQuery("DELETE FROM userstable", User.class).executeUpdate();
+            session.createQuery("DELETE FROM User").executeUpdate();
             transaction.commit();
         }
     }
